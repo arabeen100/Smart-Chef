@@ -38,20 +38,20 @@ const Recipe = async({params}:{params:Params}) => {
       </div>:<div  className="text-primary bg-primary/20 rounded-full w-fit text-sm px-2 py-.5 font-bold">comfort</div>}
       <p className="text-white text-3xl font-extrabold">{recipe?.title}</p>
       <div className="flex justify-between items-center">
-        <div className="px-8 py-4 bg-[#141c38] border-secondary/30 flex flex-col items-center justify-center rounded-2xl border w-[calc(33.33%-10.5px)]">
+        <div className="px-8 py-4 bg-[#141c38] border-secondary/30 flex flex-col items-center justify-center rounded-2xl border w-[calc(33.33%-10.5px)] max-[441px]:min-h-[129.59px]">
          <Clock className="text-icon2 mb-2"/>
-         <p className="text-white">{recipe?.readyInMinutes}m</p>
-         <p className="text-secondary text-xs font-bold">READY IN</p>
+         <p className="text-white text-center">{recipe?.readyInMinutes}m</p>
+         <p className="text-secondary text-xs font-bold text-center">READY IN</p>
         </div>
-        <div className="px-8 py-4 bg-[#141c38] border-secondary/30 flex flex-col items-center justify-center rounded-2xl border w-[calc(33.33%)]">
+        <div className="px-8 py-4 bg-[#141c38] border-secondary/30 flex flex-col items-center justify-center rounded-2xl border w-[calc(33.33%)] max-[441px]:min-h-[129.59px]">
          <Flame className="text-icon1 mb-2"/>
-         <p className="text-white">{recipe?.nutrition?.nutrients?.[0]?.amount} Kcal</p>
-         <p className="text-secondary text-xs font-bold">CALORIES</p>
+         <p className="text-white text-center whitespace-nowrap">{recipe?.nutrition?.nutrients?.[0]?.amount} Kcal</p>
+         <p className="text-secondary text-xs font-bold text-center">CALORIES</p>
         </div>
-        <div className="px-8 py-4 bg-[#141c38] border-secondary/30 flex flex-col items-center justify-center rounded-2xl border w-[calc(33.33%-10.5px)]">   
+        <div className="px-8 py-4 bg-[#141c38] border-secondary/30 flex flex-col items-center justify-center rounded-2xl border w-[calc(33.33%-10.5px)] max-[441px]:min-h-[129.59px]">   
         <Dna className="text-primary mb-2"/>
-         <p className="text-white">{recipe?.nutrition?.nutrients?.[10]?.amount} g</p>
-         <p className="text-secondary text-xs font-bold">PROTEIN</p>
+         <p className="text-white text-center whitespace-nowrap">{recipe?.nutrition?.nutrients?.[10]?.amount} g</p>
+         <p className="text-secondary text-xs font-bold text-center">PROTEIN</p>
         </div>
       </div>
       <div>

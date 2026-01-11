@@ -2,7 +2,7 @@
 
 A modern **Next.js + TypeScript** recipe application for searching recipes, browsing by nutrition, saving favorites, and managing fridge ingredients — built with scalability and performance in mind.
 
-🔗 **Live Demo:** 
+🔗 **Live Demo:https://smart-chef-orpin.vercel.app/** 
 
 ---
 
@@ -52,7 +52,7 @@ npm run start
 # lint project
 npm run lint
 
-Open http://localhost:3000
+Open https://smart-chef-orpin.vercel.app/
 in your browser.
 
 🔐 Environment Variables

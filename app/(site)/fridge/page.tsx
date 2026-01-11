@@ -71,9 +71,9 @@ const Fridge = () => {
         placeholder="Add an ingredient(e.g.Avocdo,Tomato,Chicken...)"
         value={ingredient}
         onChange={(e)=>{setIngredient(e.target.value)}}
-        className=" focus:outline-none focus:border-primary transition-colors duration-300 placeholder:text-white/50 bg-back_nav_footer border text-white rounded-xl p-3 border-secondary/30 w-5/9"
+        className=" focus:outline-none focus:border-primary transition-colors duration-300 placeholder:text-white/50 bg-back_nav_footer border text-white rounded-xl p-3 border-secondary/30 w-5/11"
         />
-        <button type="submit" className="w-2/9 text-black bg-primary text-center font-bold  rounded-xl flex justify-center items-center hover:bg-primary/90 transition-colors duration-300 gap-2 cursor-pointer">
+        <button type="submit" className="w-3/11 text-black bg-primary text-center font-bold  rounded-xl flex justify-center items-center hover:bg-primary/90 transition-colors duration-300 gap-2 cursor-pointer">
            <Plus/><span>Add</span>
         </button>
         <button type="button" onClick={()=>{setHasSearched(true);
@@ -82,7 +82,7 @@ const Fridge = () => {
                params.set("page", "1");
 
     router.push(`?${params.toString()}`);
-        }}  className="w-1/9 text-black bg-primary grid place-content-center  rounded-xl hover:bg-primary/90 transition-colors duration-300 cursor-pointer">
+        }}  className="w-2/11 text-black bg-primary grid place-content-center  rounded-xl hover:bg-primary/90 transition-colors duration-300 cursor-pointer">
         <Search size={25} className="text-black font-bold"/>
         </button>
       </form>
