@@ -5,11 +5,13 @@ import { getRandomRecipe } from "../actions/getRecipe";
 import RecipeCard from "../components/RecipeCard";
 import LoadPage from "../components/load";
 const DailyClient = ({initialData}:{initialData:any}) => {
+    const [isLoading,setIsLoading]=useState(false);
     const [recipe,setRecipe]=useState<any>(initialData);
     const refetch=async()=>{
+        setIsLoading(true);
         const data=await getRandomRecipe();
         setRecipe(data?.recipes??[]);
-
+        setIsLoading(false);
     }
   return (
     <main className={`pt-38  mr-4 ml-4 min-[620px]:mx-auto min-[620px]:w-155 flex flex-col items-center gap-6`}>
@@ -28,7 +30,7 @@ const DailyClient = ({initialData}:{initialData:any}) => {
           <p className="text-white font-bold text-2xl">Today's Surprise Pick
           </p>
         </div>
-        {!recipe?<LoadPage/>:
+        {isLoading?<LoadPage/>:
         <div className="w-full mt-2">
         <RecipeCard recipes={recipe}/>
         </div>}

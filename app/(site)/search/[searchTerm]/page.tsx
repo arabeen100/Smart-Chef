@@ -2,6 +2,8 @@ import PageTransition from "@/app/(site)/components/PageTransition";
 import SearchResults from "./SearchResults";
 import { RecipesResponse } from "@/types/trendingRecipes";
 import { fetchWithApiKeyRotation } from "@/lib/api/rotation";
+import { Suspense } from "react";
+import LoadingPage from "@/app/loading";
 
 type PageProps = {
   params: { searchTerm: string };
@@ -53,28 +55,55 @@ const res = await fetchWithApiKeyRotation(
   return res.json();
 };
 
-export default async function Page({ params, searchParams }: PageProps) {
-  const resolvedParams = await params;
-  const resolvedSearchParams = await searchParams;
-
-  const searchTerm = resolvedParams.searchTerm;
-  const page = Number(resolvedSearchParams.page ?? 1);
+const SearchContent = async ({
+  searchTerm,
+  page,
+  searchParams,
+}: {
+  searchTerm: string;
+  page: number;
+  searchParams: {
+    diet?: string;
+    intolerances?: string;
+    cuisine?: string;
+  };
+}) => {
 
   const data = await getSearchRecipes({
     page,
     searchTerm,
-    diet: resolvedSearchParams.diet,
-    intolerances: resolvedSearchParams.intolerances,
-    cuisine: resolvedSearchParams.cuisine,
+    diet: searchParams.diet,
+    intolerances: searchParams.intolerances,
+    cuisine: searchParams.cuisine,
   });
 
   return (
-    <PageTransition>
     <SearchResults
       searchTerm={searchTerm}
       recipes={data}
       page={page}
     />
+  );
+};
+
+export default async function Page ({ params, searchParams }: PageProps) {
+  const resolvedParams=await params;
+  const resolvedSearchedParams=await searchParams;
+  const searchTerm = resolvedParams.searchTerm;
+  const page = Number(resolvedSearchedParams.page ?? 1);
+
+  return (
+    <PageTransition>
+      <Suspense
+        fallback={<LoadingPage/>
+        }
+      >
+        <SearchContent
+          searchTerm={searchTerm}
+          page={page}
+          searchParams={resolvedSearchedParams}
+        />
+      </Suspense>
     </PageTransition>
   );
 }

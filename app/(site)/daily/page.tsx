@@ -1,15 +1,32 @@
-import PageTransition from "../components/PageTransition"
-import DailyClient from "./DailyClient"
-import { getRandomRecipe } from "../actions/getRecipe"
-const Daily = async() => {
-  const randomRecipe=await getRandomRecipe();
+import { Suspense } from "react";
+import PageTransition from "../components/PageTransition";
+import DailyClient from "./DailyClient";
+import { getRandomRecipe } from "../actions/getRecipe";
+import LoadingPage from "@/app/loading";
+
+
+const DailyContent = async () => {
+  const randomRecipe = await getRandomRecipe();
+
+  return (
+    <DailyClient
+      initialData={randomRecipe?.recipes}
+    />
+  );
+};
+
+const Daily = () => {
   return (
     <PageTransition>
-      <DailyClient
-       initialData={randomRecipe?.recipes}
-      />
+      <Suspense
+        fallback={
+           <LoadingPage/>
+        }
+      >
+        <DailyContent />
+      </Suspense>
     </PageTransition>
-  )
-}
+  );
+};
 
-export default Daily
+export default Daily;
