@@ -131,7 +131,7 @@ const Fridge = () => {
         <span className="text-white">Page {page}</span>
 
         <button
-          disabled={recipes?.results?.length < 6}
+          disabled={recipes?.results?.length < 6||recipes?.totalResults===6}
           onClick={() => {changePage(page + 1);
             setHasSearched(true);
           }}

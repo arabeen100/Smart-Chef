@@ -61,7 +61,7 @@ const SearchResults = ({ recipes, searchTerm, page }: Props) => {
         <span className="text-white">Page {page}</span>
 
         <button
-          disabled={recipes?.results?.length < 12}
+          disabled={recipes?.results?.length < 12||recipes?.totalResults===12}
           onClick={() => changePage(page + 1)}
           className="text-black cursor-pointer bg-primary font-bold px-4 py-3 rounded-lg disabled:opacity-50"
         >
