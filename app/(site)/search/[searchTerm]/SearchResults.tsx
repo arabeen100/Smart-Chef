@@ -25,7 +25,7 @@ const SearchResults = ({ recipes, searchTerm, page }: Props) => {
     <main className="pt-38 mr-4 ml-4 xl:mx-auto xl:w-300 flex flex-col gap-6">
       <div className={`flex flex-col gap-6  ${recipes?.results?.length>0?"md:flex-row md:justify-between":""}`}>
         <div>
-          <p className="text-white text-4xl font-extrabold">
+          <p className="text-white text-3xl font-extrabold">
             Results for "{searchTerm}"
           </p>
           <p className={` ${recipes?.results?.length>0 ? "text-secondary text-sm":"text-3xl text-primary text-center mt-10 font-bold"}`}>

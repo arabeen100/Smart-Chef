@@ -1,7 +1,7 @@
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
 import ClientLayout from "./ClientLayout";
-export default function RootLayout({
+export default function SiteLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;

@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     icon:"images/WhatsApp Image 2025-12-31 at 20.52.06.jpeg"
   }
 };
-export default function StatusLayout({
+export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;

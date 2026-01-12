@@ -36,7 +36,7 @@ const FilterContent = async ({ searchTerm }: { searchTerm: string }) => {
 
 export default async function FilterPage({ params }: Props) {
   const resolvedParams=await params;
-  const searchTerm = resolvedParams.searchTerm;
+  const searchTerm =decodeURIComponent( resolvedParams.searchTerm);
 
   return (
     <PageTransition>

@@ -89,7 +89,7 @@ const SearchContent = async ({
 export default async function Page ({ params, searchParams }: PageProps) {
   const resolvedParams=await params;
   const resolvedSearchedParams=await searchParams;
-  const searchTerm = resolvedParams.searchTerm;
+  const searchTerm =decodeURIComponent( resolvedParams.searchTerm);
   const page = Number(resolvedSearchedParams.page ?? 1);
 
   return (

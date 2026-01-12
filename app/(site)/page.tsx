@@ -7,21 +7,11 @@ import Link from "next/link";
 import PageTransition from "./components/PageTransition";
 import { fetchWithApiKeyRotation } from "@/lib/api/rotation";
 const getTrendingRecipes = async (): Promise<RecipesResponse> => {
-  const SIX_HOURS = 1000 * 60 * 60 * 6;
-  const seed = Math.floor(Date.now() / SIX_HOURS);
-
-  function seededRandom(seed: number) {
-  const x = Math.sin(seed) * 10000;
-  return x - Math.floor(x);
-  }
-
-const offset = Math.floor(seededRandom(seed) * 5212);
+  const offset=Math.floor(Math.random()*5212);
 const res = await fetchWithApiKeyRotation(
     (apiKey) =>
       `https://api.spoonacular.com/recipes/complexSearch?sort=popularity&offset=${offset}&number=12&addRecipeNutrition=true&apiKey=${apiKey}`,
-    {
-     next:{revalidate:6*60*60},
-    }
+     {cache:"no-store"}
   );
 
   if (!res.ok) {
@@ -61,7 +51,7 @@ export default async function Home() {
           <div className="w-2 h-8.5 rounded-full bg-primary"/>
           <p className="text-white font-bold text-2xl">Trending Now</p>
         </div>
-        <p className="text-secondary ml-5">The most popular dishes this week</p>
+        <p className="text-secondary ml-5">Some of our most popular dishes</p>
 
       </div>
     </div> 
