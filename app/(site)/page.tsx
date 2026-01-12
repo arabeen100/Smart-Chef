@@ -6,6 +6,8 @@ import SaveButton from "./components/SaveButton";
 import Link from "next/link";
 import PageTransition from "./components/PageTransition";
 import { fetchWithApiKeyRotation } from "@/lib/api/rotation";
+import { Suspense } from "react";
+import LoadingPage from "../loading";
 const getTrendingRecipes = async (): Promise<RecipesResponse> => {
   const offset=Math.floor(Math.random()*5212);
 const res = await fetchWithApiKeyRotation(
@@ -38,11 +40,10 @@ const res = await fetchWithApiKeyRotation(
 
   return res.json();
 };
-export default async function Home() {
+ async function HomeContent() {
   const trendingRecipes=await getTrendingRecipes();
   const randomRecipe=await getRandomRecipe();
   return (
-   <PageTransition>
    <main className={`pt-38  mr-4 ml-4 xl:mx-auto xl:w-300 flex flex-col gap-15`}>
     <SearchBox />
     <div className="flex flex-col gap-5" >
@@ -76,6 +77,19 @@ export default async function Home() {
 
 
    </main>
-   </PageTransition>
+
+  );
+}
+export default function Home() {
+  return (
+    <PageTransition>
+      <Suspense
+        fallback={
+          <LoadingPage/>
+        }
+      >
+        <HomeContent />
+      </Suspense>
+    </PageTransition>
   );
 }
