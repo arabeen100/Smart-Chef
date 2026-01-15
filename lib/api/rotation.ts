@@ -10,16 +10,11 @@ const API_KEYS = [
   process.env.API_KEY_9!,
   process.env.API_KEY_10!,
 ];
-
-const sleep = (ms: number) =>
-  new Promise((resolve) => setTimeout(resolve, ms));
-
 export async function fetchWithApiKeyRotation(
   buildUrl: (apiKey: string) => string,
   options?: RequestInit
 ) {
   let lastError: any = null;
-  let attempts:number=0;
   for (const apiKey of API_KEYS) {
     const url = buildUrl(apiKey);
 
@@ -30,10 +25,6 @@ export async function fetchWithApiKeyRotation(
     }
     if (res.status === 402 || res.status === 429) {
       lastError = res;
-      attempts++;
-      if (attempts % API_KEYS.length === 0) {
-        await sleep(1000); 
-      }
       continue; 
     }
     throw new Error(`Request failed with status ${res.status}`);
